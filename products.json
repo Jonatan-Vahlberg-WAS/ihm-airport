@@ -118,12 +118,6 @@
         "weight": 20,
         "properties": "",
         "race": null
-    },
-    {
-        "category": "LUGGAGE",
-        "weight": 20,
-        "properties": "allowed",
-        "race": "DOG"
     }
 
 ]

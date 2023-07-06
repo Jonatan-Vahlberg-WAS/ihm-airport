@@ -1,3 +1,5 @@
+const BASE_DELAY = 100;
+
 const diagnosticScreen = document.querySelector("#airport-diagnostics");
 
 // from products.json
@@ -12,14 +14,14 @@ let shipping = [];
 let dangerousGoods = [];
 
 const anserKey = {
-    LUGGAGE: 5,
-    HEAVY_LUGGAGE: 3,
-    DOGS: 5,
-    CATS: 2,
-    SHIPPING: 5,
-    DANGEROUS_GOODS: 2,
+    LUGGAGE: 4,
+    HEAVY_LUGGAGE: 2,
+    DOGS: 3,
+    CATS: 1,
+    SHIPPING: 4,
+    DANGEROUS_GOODS: 3,
     UNALLOWED_DANGEROUS_GOODS: 2,
-    totalAllowedProducts: 19,
+    totalAllowedProducts: 15,
 }
 
 
@@ -40,77 +42,113 @@ function getProducts() {
         });
 }
 
-function printToDiagnosticScreen(message = "") {
+function printToDiagnosticScreen(message = "", delay = 0) {
     const p = document.createElement("p");
     p.innerText = "Checking..."
-    diagnosticScreen.appendChild(p);
+    setTimeout(() => {
+        diagnosticScreen.appendChild(p);
+    }, delay)
     setTimeout(() => {
         p.innerText = message;
-    }, 300)
+    }, 1000)
     
 }
 
 function sortAirportGoods() {
     products.forEach(function (product) {
-        // Check prouct category
+        switch (product.category) {
+            case "LUGGAGE":
+                if(product.weight > 23){
+                    luggage.heavy = true;
+                }
+                luggage.push(product);
+            break;
+            case "PETS":
+                switch (product.race) {
+                    case "DOG":
+                        pets.DOG.push(product);
+                        break;
+                    case "CAT":
+                        pets.CAT.push(product);
+                        break;
+                    case "FISH":
+                        pets.FISH.push(product);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "SHIPPING":
+                shipping.push(product);
+                break;
+            case "DANGEROUS_GOODS":
+                if(product.properties === "allowed"){
+                    dangerousGoods.push(product);
+                }
+                break;
+            default:
+                break;
+        }
+
     });
 }
 
 function runLuggageDiagnostic() {
     if (luggage.length === anserKey.LUGGAGE) {
-        printToDiagnosticScreen("✅ LUGGAGE: All luggage is accounted for");
+        printToDiagnosticScreen("✅ LUGGAGE: All luggage is accounted for", BASE_DELAY);
     } else {
-        printToDiagnosticScreen("❌ LUGGAGE: Not all luggage is accounted for");
+        printToDiagnosticScreen(`❌ LUGGAGE: Not all luggage is accounted for (${luggage.length} of ${anserKey.LUGGAGE})`, BASE_DELAY);
     }
     const heavyLuggage = luggage.filter((l) => l.weight > 23)
     if (heavyLuggage.length === anserKey.HEAVY_LUGGAGE) {
-        printToDiagnosticScreen("\t✅ HEAVY LUGGAGE: All heavy luggage is accounted for");
+        printToDiagnosticScreen("\t✅ HEAVY LUGGAGE: All heavy luggage is accounted for", BASE_DELAY * 3);
     } else {
-        printToDiagnosticScreen("\t❌ HEAVY LUGGAGE: Not all heavy luggage is accounted for");
+        printToDiagnosticScreen(`\t❌ HEAVY LUGGAGE: Not all heavy luggage is accounted for (${heavyLuggage.length} of ${anserKey.HEAVY_LUGGAGE})`, BASE_DELAY * 3);
     }
 }
 
 function runPetsDiagnostic() {
     // Check pets
     if (pets.DOG.length === anserKey.DOGS) {
-        printToDiagnosticScreen("✅ DOGS: All dogs are accounted for");
+        printToDiagnosticScreen("✅ DOGS: All dogs are accounted for", BASE_DELAY * 5);
     } else {
-        printToDiagnosticScreen("❌ DOGS: Not all dogs are accounted for");
+        printToDiagnosticScreen(`❌ DOGS: Not all dogs are accounted for (${pets.DOG.length} of ${anserKey.DOGS})`, BASE_DELAY * 5);
     }
 
     // Check cats
     if (pets.CAT.length === anserKey.CATS) {
-        printToDiagnosticScreen("✅ CATS: All cats are accounted for");
+        printToDiagnosticScreen("✅ CATS: All cats are accounted for", BASE_DELAY * 7);
     } else {
-        printToDiagnosticScreen("❌ CATS: Not all cats are accounted for");
+        printToDiagnosticScreen(`❌ CATS: Not all cats are accounted for (${pets.CAT.length} of ${anserKey.CATS})`, BASE_DELAY * 7);
     }
 }
 
 function runShippingDiagnostic() {
     // Check shipping
     if (shipping.length === anserKey.SHIPPING) {
-        printToDiagnosticScreen("✅ SHIPPING: All shipping is accounted for");
+        printToDiagnosticScreen("✅ SHIPPING: All shipping is accounted for", BASE_DELAY * 9);
     } else {
-        printToDiagnosticScreen("❌ SHIPPING: Not all shipping is accounted for");
+        printToDiagnosticScreen(`❌ SHIPPING: Not all shipping is accounted for (${shipping.length} of ${anserKey.SHIPPING})`, BASE_DELAY * 9);
     }
 }
 
 function runDangerousGoodsDiagnostic() {
     // Check dangerous goods
     if (dangerousGoods.length === anserKey.DANGEROUS_GOODS) {
-        printToDiagnosticScreen("✅ DANGEROUS GOODS: All dangerous goods are accounted for");
+        printToDiagnosticScreen("✅ DANGEROUS GOODS: All dangerous goods are accounted for", BASE_DELAY * 12);
     } else {
-        printToDiagnosticScreen("❌ DANGEROUS GOODS: Not all dangerous goods are accounted for");
+        printToDiagnosticScreen(`❌ DANGEROUS GOODS: Not all dangerous goods are accounted for (${dangerousGoods.length} of ${anserKey.DANGEROUS_GOODS})`,BASE_DELAY * 12);
     }
 }
+
 
 function allAllowedProductsAccountedFor() {
     const totalSortedProducts = luggage.length + pets.DOG.length + pets.CAT.length + shipping.length + dangerousGoods.length;
     if(anserKey.totalAllowedProducts === totalSortedProducts){
-        printToDiagnosticScreen("✅ All allowed products are accounted for");
+        printToDiagnosticScreen("✅ All allowed products are accounted for", BASE_DELAY * 15);
     }
     else {
-        printToDiagnosticScreen("❌ All allowed products are not accounted for");
+        printToDiagnosticScreen(`❌ All allowed products are not accounted for (${totalSortedProducts} of ${anserKey.totalAllowedProducts})`, BASE_DELAY * 15);
     }
 }
 
