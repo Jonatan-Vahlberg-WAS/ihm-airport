@@ -1,0 +1,130 @@
+[
+    {
+        "category": "LUGGAGE",
+        "weight": 20,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "LUGGAGE",
+        "weight": 25,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "PETS",
+        "weight": 10,
+        "properties": "allowed",
+        "race": "DOG"
+    },
+    {
+        "category": "PETS",
+        "weight": 8,
+        "properties": "allowed",
+        "race": "CAT"
+    },
+    {
+        "category": "SHIPPING",
+        "weight": 15,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "DANGEROUS_GOODS",
+        "weight": 5,
+        "properties": "unallowed",
+        "race": null
+    },
+    {
+        "category": "DANGEROUS_GOODS",
+        "weight": 10,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "LUGGAGE",
+        "weight": 30,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "PETS",
+        "weight": 12,
+        "properties": "allowed",
+        "race": "DOG"
+    },
+    {
+        "category": "PETS",
+        "weight": 9,
+        "properties": "allowed",
+        "race": "BIRD"
+    },
+    {
+        "category": "SHIPPING",
+        "weight": 25,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "DANGEROUS_GOODS",
+        "weight": 6,
+        "properties": "unallowed",
+        "race": null
+    },
+    {
+        "category": "DANGEROUS_GOODS",
+        "weight": 12,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "SHIPPING",
+        "weight": 20,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "LUGGAGE",
+        "weight": 22,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "PETS",
+        "weight": 10,
+        "properties": "allowed",
+        "race": "FISH"
+    },
+    {
+        "category": "DANGEROUS_GOODS",
+        "weight": 15,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "",
+        "weight": 20,
+        "properties": "allowed",
+        "race": null
+    },
+    {
+        "category": "PETS",
+        "weight": null,
+        "properties": "allowed",
+        "race": "DOG"
+    },
+    {
+        "category": "SHIPPING",
+        "weight": 20,
+        "properties": "",
+        "race": null
+    },
+    {
+        "category": "LUGGAGE",
+        "weight": 20,
+        "properties": "allowed",
+        "race": "DOG"
+    }
+
+]
+
