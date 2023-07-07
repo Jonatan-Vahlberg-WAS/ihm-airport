@@ -50,47 +50,13 @@ function printToDiagnosticScreen(message = "", delay = 0) {
     }, delay)
     setTimeout(() => {
         p.innerText = message;
-    }, 1000)
+    }, 1000+ delay/5)
     
 }
 
 function sortAirportGoods() {
-    products.forEach(function (product) {
-        switch (product.category) {
-            case "LUGGAGE":
-                if(product.weight > 23){
-                    luggage.heavy = true;
-                }
-                luggage.push(product);
-            break;
-            case "PETS":
-                switch (product.race) {
-                    case "DOG":
-                        pets.DOG.push(product);
-                        break;
-                    case "CAT":
-                        pets.CAT.push(product);
-                        break;
-                    case "FISH":
-                        pets.FISH.push(product);
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case "SHIPPING":
-                shipping.push(product);
-                break;
-            case "DANGEROUS_GOODS":
-                if(product.properties === "allowed"){
-                    dangerousGoods.push(product);
-                }
-                break;
-            default:
-                break;
-        }
-
-    });
+   // Sort luggage based on category, and individual product properties
+   //TODO: Sort luggage
 }
 
 function runLuggageDiagnostic() {
